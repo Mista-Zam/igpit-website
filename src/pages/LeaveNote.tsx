@@ -11,7 +11,7 @@ const LeaveNote = () => {
   const { user } = useAuth()
   const [recipient, setRecipient] = useState('')
   const [content, setContent] = useState('')
-  const [category, setCategory] = useState<PostCategory>('Appreciation')
+  const [category] = useState<PostCategory>('Appreciation')
   const [noteColor, setNoteColor] = useState<NoteColor>('yellow')
   const [isAnonymous, setIsAnonymous] = useState(true)
   const [submitting, setSubmitting] = useState(false)
