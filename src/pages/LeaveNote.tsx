@@ -124,7 +124,7 @@ const LeaveNote = () => {
             disabled={submitting}
             className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-dark disabled:opacity-60"
           >
-            {submitting ? 'PinningÃ¢â‚¬Â¦' : 'Pin My Note'}
+            {submitting ? 'Pinning' : 'Pin My Note'}
           </button>
           <button type="button" onClick={() => navigate('/wall')} className="inline-flex items-center gap-2 rounded-full bg-white/95 px-6 py-3 text-sm font-semibold ring-1 ring-black/5 hover:bg-white">
             Cancel
@@ -134,7 +134,7 @@ const LeaveNote = () => {
       {submitted && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink/40 px-4" role="dialog" aria-modal="true" aria-labelledby="submission-title">
           <div className="w-full max-w-sm rounded-3xl bg-paper p-6 text-center shadow-note-lift">
-            <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-note-green text-xl">✓</div>
+            <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-note-green text-xl"></div>
             <h2 id="submission-title" className="font-display text-2xl font-bold">Note submitted!</h2>
             <p className="mt-2 text-sm leading-relaxed text-ink-soft">Your message is waiting for approval. It will appear on the Freedom Wall once it has been reviewed.</p>
             <button type="button" onClick={() => navigate('/wall')} className="mt-5 rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-white hover:bg-brand-dark">View the Wall</button>

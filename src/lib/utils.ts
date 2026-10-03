@@ -45,7 +45,7 @@ export const randomNoteRotation = () => `${randInt(-7, +5)}deg`
 /** Clip a string to the provided max length, adding ellipsis if needed. */
 export const truncate = (s: string, max = 160) => {
   if (s.length <= max) return s
-  return `${s.slice(0, max - 1).trimEnd()}â€¦`
+  return `${s.slice(0, max - 1).trimEnd()}`
 }
 
 /** Post services: the Freedom Wall uses Supabase views + RPCs (never raw inserts of status). */
@@ -118,7 +118,7 @@ export const postsService = {
     return data as Post
   },
 
-  /** Update an unpublished note (pending or rejected) â€” owned by the current user. */
+  /** Update an unpublished note (pending or rejected)  owned by the current user. */
   async updateUnpublished(postId: string, changes: Partial<Pick<Post, 'recipient' | 'content' | 'category' | 'note_color' | 'is_anonymous'>>) {
     const { data, error } = await supabase
       .from('posts')

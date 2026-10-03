@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 /* ==========================================================================
-   Teachers' Freedom Wall — design tokens
+   Teachers' Freedom Wall  design tokens
    Playful school stationery: warm paper, corkboard beige, sticky-note brights.
    ========================================================================== */
 
@@ -267,7 +267,7 @@
   }
 }
 
-/* Note placement animation — a gentle settle, not a bounce. */
+/* Note placement animation  a gentle settle, not a bounce. */
 @keyframes note-in {
   from {
     opacity: 0;
