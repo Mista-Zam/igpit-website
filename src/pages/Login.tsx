@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 
 import { useAuth } from '../context/AuthContext'
@@ -41,7 +41,7 @@ const Login = () => {
 
   return <section className="mx-auto flex min-h-[70vh] max-w-md flex-col justify-center px-4 py-10 sm:px-6">
     <div className="space-y-2 text-center">
-      <h1 className="font-display text-3xl font-bold sm:text-4xl">{mode === 'signin' ? 'Welcome Back, Teacher' : 'Join the Wall'}</h1>
+      <h1 className="font-display text-3xl font-bold sm:text-4xl">{mode === 'signin' ? 'Welcome Back' : 'Join the Wall'}</h1>
       <p className="text-ink-soft">{mode === 'signin' ? 'Sign in to pin a note or check its review status.' : 'Every new account starts as a teacher.'}</p>
     </div>
     <form onSubmit={handleSubmit} className="mt-8 space-y-5 rounded-3xl bg-white/95 p-6 shadow-note ring-1 ring-black/5">
