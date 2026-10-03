@@ -12,6 +12,7 @@ import {
   STATUS_META,
 } from '../lib/constants'
 import { useAuth } from '../context/AuthContext'
+import { StudentApprovals } from '../components/admin/StudentApprovals'
 import type {
   DashboardStats,
   ModerationLog,
@@ -33,7 +34,7 @@ const TABS: { key: Tab; label: string }[] = [
 
 const StatCard = ({ label, value }: { label: string; value: number | undefined }) => (
   <div className="rounded-2xl bg-white/95 px-4 py-3 shadow-note ring-1 ring-black/5">
-    <div className="text-2xl font-bold text-ink">{value ?? 'ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“'}</div>
+    <div className="text-2xl font-bold text-ink">{value ?? 'ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ'}</div>
     <div className="text-xs font-semibold uppercase tracking-wide text-ink-soft">{label}</div>
   </div>
 )
@@ -77,7 +78,7 @@ const NoteCard = ({
 
       <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-ink-faint">
         <span>{post.is_anonymous ? 'Anonymous' : 'Named'}</span>
-        <span>Ãƒâ€šÃ‚Â·</span>
+        <span>ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â·</span>
         <span>{formatRelative(post.created_at)}</span>
       </div>
 
@@ -240,7 +241,7 @@ const Admin = () => {
         <div>
           <h1 className="font-display text-3xl font-bold sm:text-4xl">Admin Dashboard</h1>
           <p className="text-ink-soft">
-            Signed in as {profile?.display_name ?? 'admin'} Ãƒâ€šÃ‚Â· {profile?.role}
+            Signed in as {profile?.display_name ?? 'admin'} ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· {profile?.role}
           </p>
         </div>
         <button
@@ -256,6 +257,8 @@ const Admin = () => {
         <div className="min-w-56 flex-1"><label htmlFor="admin-email" className="mb-1 block text-xs font-bold uppercase tracking-wide text-ink-soft">Grant admin access</label><input id="admin-email" type="email" value={adminEmail} onChange={(event) => setAdminEmail(event.target.value)} placeholder="registered@email.com" className="w-full rounded-xl bg-white px-3 py-2 text-sm ring-1 ring-black/10 focus:outline-none focus:ring-2 focus:ring-brand" /></div>
         <button type="submit" disabled={busyId === 'admin-promotion'} className="rounded-full bg-brand px-4 py-2 text-sm font-bold text-white hover:bg-brand-dark disabled:opacity-50">Make admin</button>
       </form>
+      <StudentApprovals />
+
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <StatCard label="Pending" value={stats?.pending_count} />
         <StatCard label="Published" value={stats?.published_count} />
@@ -297,7 +300,7 @@ const Admin = () => {
       )}
 
       {loading && (
-        <div className="py-10 text-center text-sm font-semibold text-ink-soft">LoadingÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦</div>
+        <div className="py-10 text-center text-sm font-semibold text-ink-soft">LoadingÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¦</div>
       )}
 
       {!loading && showPosts && (
@@ -338,12 +341,12 @@ const Admin = () => {
                 </span>
               </div>
 
-              {r.details && <p className="text-sm text-ink-soft">ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ{r.details}ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â</p>}
+              {r.details && <p className="text-sm text-ink-soft">ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“{r.details}ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â</p>}
 
               {r.post ? (
                 <div className="rounded-xl bg-cream p-3 text-sm text-ink">
                   <div className="text-xs font-semibold uppercase text-ink-soft">
-                    To {r.post.recipient} Ãƒâ€šÃ‚Â· {r.post.status}
+                    To {r.post.recipient} ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· {r.post.status}
                   </div>
                   <p className="mt-1">{r.post.content}</p>
                 </div>
@@ -414,7 +417,7 @@ const Admin = () => {
                   <td className="px-4 py-3 font-semibold">{l.moderator_display_name}</td>
                   <td className="px-4 py-3">{l.action}</td>
                   <td className="px-4 py-3">{l.post_recipient}</td>
-                  <td className="px-4 py-3 text-ink-soft">{l.reason ?? 'ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“'}</td>
+                  <td className="px-4 py-3 text-ink-soft">{l.reason ?? 'ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ'}</td>
                 </tr>
               ))}
             </tbody>

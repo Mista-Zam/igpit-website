@@ -3,7 +3,7 @@
  * These mirror the PostgreSQL enums created in supabase/migrations.
  */
 
-export type UserRole = 'teacher' | 'admin'
+export type UserRole = 'teacher' | 'admin' | 'super_admin'
 
 export type PostStatus = 'pending' | 'published' | 'rejected' | 'removed'
 
