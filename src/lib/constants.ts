@@ -9,8 +9,8 @@
   UserRole,
 } from '../types'
 
-export const APP_NAME = "Teachers' Freedom Wall"
-export const TAGLINE = 'Notes from one teacher to another.'
+export const APP_NAME = "DCSHS Teachers' Dedication Wall"
+export const TAGLINE = 'A dedication wall for teachers, by students.'
 
 export const POST_CATEGORIES: PostCategory[] = [
   'Classroom',

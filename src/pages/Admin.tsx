@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+﻿import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import {
   adminService,
@@ -33,7 +33,7 @@ const TABS: { key: Tab; label: string }[] = [
 
 const StatCard = ({ label, value }: { label: string; value: number | undefined }) => (
   <div className="rounded-2xl bg-white/95 px-4 py-3 shadow-note ring-1 ring-black/5">
-    <div className="text-2xl font-bold text-ink">{value ?? '–'}</div>
+    <div className="text-2xl font-bold text-ink">{value ?? 'â€“'}</div>
     <div className="text-xs font-semibold uppercase tracking-wide text-ink-soft">{label}</div>
   </div>
 )
@@ -76,10 +76,8 @@ const NoteCard = ({
       </div>
 
       <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-ink-faint">
-        <span>{post.category}</span>
-        <span>·</span>
         <span>{post.is_anonymous ? 'Anonymous' : 'Named'}</span>
-        <span>·</span>
+        <span>Â·</span>
         <span>{formatRelative(post.created_at)}</span>
       </div>
 
@@ -234,7 +232,7 @@ const Admin = () => {
         <div>
           <h1 className="font-display text-3xl font-bold sm:text-4xl">Admin Dashboard</h1>
           <p className="text-ink-soft">
-            Signed in as {profile?.display_name ?? 'admin'} · {profile?.role}
+            Signed in as {profile?.display_name ?? 'admin'} Â· {profile?.role}
           </p>
         </div>
         <button
@@ -287,7 +285,7 @@ const Admin = () => {
       )}
 
       {loading && (
-        <div className="py-10 text-center text-sm font-semibold text-ink-soft">Loading…</div>
+        <div className="py-10 text-center text-sm font-semibold text-ink-soft">Loadingâ€¦</div>
       )}
 
       {!loading && showPosts && (
@@ -328,12 +326,12 @@ const Admin = () => {
                 </span>
               </div>
 
-              {r.details && <p className="text-sm text-ink-soft">“{r.details}”</p>}
+              {r.details && <p className="text-sm text-ink-soft">â€œ{r.details}â€</p>}
 
               {r.post ? (
                 <div className="rounded-xl bg-cream p-3 text-sm text-ink">
                   <div className="text-xs font-semibold uppercase text-ink-soft">
-                    To {r.post.recipient} · {r.post.status}
+                    To {r.post.recipient} Â· {r.post.status}
                   </div>
                   <p className="mt-1">{r.post.content}</p>
                 </div>
@@ -404,7 +402,7 @@ const Admin = () => {
                   <td className="px-4 py-3 font-semibold">{l.moderator_display_name}</td>
                   <td className="px-4 py-3">{l.action}</td>
                   <td className="px-4 py-3">{l.post_recipient}</td>
-                  <td className="px-4 py-3 text-ink-soft">{l.reason ?? '–'}</td>
+                  <td className="px-4 py-3 text-ink-soft">{l.reason ?? 'â€“'}</td>
                 </tr>
               ))}
             </tbody>

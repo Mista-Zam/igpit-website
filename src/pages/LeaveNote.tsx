@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom'
 
 import { postsService } from '../lib/utils'
-import { CONTENT_MAX, NOTE_COLORS, POST_CATEGORIES, RECIPIENT_MAX, RECIPIENT_PRESETS } from '../lib/constants'
+import { CONTENT_MAX, NOTE_COLORS, RECIPIENT_MAX, RECIPIENT_PRESETS } from '../lib/constants'
 import type { NoteColor, PostCategory } from '../types'
 import { useAuth } from '../context/AuthContext'
 
@@ -95,8 +95,7 @@ const LeaveNote = () => {
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2">
-          <div className="space-y-2">
-            <label className="text-sm font-semibold text-ink">Category</label>
+          <div className="hidden">
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value as PostCategory)}

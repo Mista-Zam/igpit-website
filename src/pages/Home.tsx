@@ -4,7 +4,7 @@ export const Home = () => {
   return (
     <section className="relative mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center gap-8 px-4 text-center sm:px-6 lg:px-8">
       <h1 className="font-display text-4xl font-bold tracking-tight sm:text-6xl md:text-7xl">
-        Dear Teacher, This One's For You.
+        Dear Teachers, This One's For You.
       </h1>
       <p className="max-w-2xl text-lg text-ink-soft sm:text-xl">
         Leave a note. Share a thought. Make another teacher's day.
