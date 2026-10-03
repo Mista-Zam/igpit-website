@@ -1,0 +1,38 @@
+# Environment variables — NEVER COMMIT
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Supabase local artifacts (never commit a local database dump / secrets)
+supabase/.branches
+supabase/.temp
+supabase/.env
+supabase/.env.local
+supabase/seed.local.sql
+supabase/volumes

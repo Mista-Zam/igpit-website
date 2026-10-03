@@ -1,0 +1,312 @@
+@import 'tailwindcss';
+
+/* ==========================================================================
+   Teachers' Freedom Wall — design tokens
+   Playful school stationery: warm paper, corkboard beige, sticky-note brights.
+   ========================================================================== */
+
+@theme {
+  /* Surfaces */
+  --color-cream: #fdf6e9;
+  --color-paper: #fffdf8;
+  --color-beige: #f4e8d5;
+  --color-beige-deep: #e8d7bb;
+  --color-ink: #2f2a26;
+  --color-ink-soft: #5d5348;
+  --color-ink-faint: #8b8072;
+  --color-cork: #d9bd93;
+
+  /* Brand */
+  --color-brand: #2f6f6a;
+  --color-brand-dark: #235450;
+  --color-brand-light: #dcecea;
+  --color-accent: #e0654f;
+  --color-accent-dark: #bf4c39;
+
+  /* Sticky-note brights */
+  --color-note-yellow: #ffe566;
+  --color-note-pink: #ff8fb3;
+  --color-note-blue: #70cfff;
+  --color-note-green: #7be0b2;
+  --color-note-lavender: #b89cff;
+  --color-note-orange: #ffaa68;
+  --color-note-purple: #d09cff;
+
+  /* Admin console: calm, professional */
+  --color-slate-ink: #0f172a;
+  --color-console: #f6f7f9;
+
+  /* Typography */
+  --font-hand: 'Caveat', 'Segoe Print', cursive;
+  --font-display: 'Fraunces', 'Georgia', serif;
+  --font-sans: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+
+  /* Motion */
+  --ease-note: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  * {
+    border-color: --alpha(var(--color-beige-deep) / 70%);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100dvh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Reduce motion for users who ask for it. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Faint ruled-paper lines for large surfaces. */
+  .paper-lines {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 31px,
+      --alpha(var(--color-beige-deep) / 35%) 31px,
+      --alpha(var(--color-beige-deep) / 35%) 32px
+    );
+  }
+
+  /* A torn-edge sticky note. */
+  .note-edge::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 -7px 0;
+    height: 8px;
+    background: inherit;
+    filter: brightness(0.97);
+    clip-path: polygon(
+      0 0,
+      4% 100%,
+      8% 30%,
+      12% 90%,
+      17% 25%,
+      22% 95%,
+      27% 35%,
+      33% 88%,
+      39% 30%,
+      45% 92%,
+      51% 40%,
+      57% 90%,
+      63% 32%,
+      69% 88%,
+      75% 38%,
+      81% 92%,
+      87% 30%,
+      93% 90%,
+      97% 45%,
+      100% 80%,
+      100% 0
+    );
+  }
+
+  .cork-texture {
+    background-color: var(--color-beige);
+    background-image:
+      radial-gradient(
+        circle at 18% 22%,
+        --alpha(var(--color-beige-deep) / 55%) 0 1.5px,
+        transparent 1.6px
+      ),
+      radial-gradient(
+        circle at 72% 64%,
+        --alpha(var(--color-beige-deep) / 45%) 0 1.2px,
+        transparent 1.3px
+      ),
+      radial-gradient(
+        circle at 41% 83%,
+        --alpha(var(--color-cork) / 40%) 0 1.8px,
+        transparent 1.9px
+      ),
+      radial-gradient(
+        circle at 88% 12%,
+        --alpha(var(--color-cork) / 35%) 0 1.4px,
+        transparent 1.5px
+      );
+    background-size:
+      37px 37px,
+      53px 53px,
+      29px 29px,
+      67px 67px;
+  }
+
+  .shadow-note {
+    box-shadow:
+      0 1px 1px --alpha(#2f2a26 / 8%),
+      0 4px 10px -2px --alpha(#2f2a26 / 12%),
+      0 12px 24px -8px --alpha(#2f2a26 / 14%);
+  }
+
+  .shadow-note-lift {
+    box-shadow:
+      0 2px 2px --alpha(#2f2a26 / 8%),
+      0 10px 18px -4px --alpha(#2f2a26 / 18%),
+      0 24px 40px -12px --alpha(#2f2a26 / 20%);
+  }
+
+  /* Washi tape. */
+  .tape {
+    position: absolute;
+    width: 84px;
+    height: 22px;
+    background-image: linear-gradient(
+      105deg,
+      --alpha(#f6e3b8 / 85%),
+      --alpha(#fdf3dc / 70%),
+      --alpha(#f0dcae / 85%)
+    );
+    box-shadow: 0 1px 2px --alpha(#2f2a26 / 12%);
+    clip-path: polygon(
+      2% 6%,
+      98% 0%,
+      100% 92%,
+      0% 100%
+    );
+  }
+
+  .pin {
+    position: relative;
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 32% 30%, #ff9d8a, #d94f3a 62%, #a8351f);
+    box-shadow:
+      0 2px 3px --alpha(#2f2a26 / 35%),
+      inset 0 -1px 2px --alpha(#000000 / 25%);
+  }
+
+  .pin::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 2px;
+    height: 9px;
+    transform: translateX(-50%);
+    background: --alpha(#2f2a26 / 35%);
+  }
+
+  /* Notebook tab used for the category filter. */
+  .tab-notch {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  }
+
+  .doodle-underline {
+    background-image: linear-gradient(
+      to right,
+      --alpha(var(--color-accent) / 45%),
+      --alpha(var(--color-accent) / 45%)
+    );
+    background-size: 100% 5px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .scrollbar-slim::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-slim::-webkit-scrollbar-thumb {
+    background: --alpha(var(--color-ink-faint) / 35%);
+    border-radius: 9999px;
+  }
+
+  .scrollbar-slim::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* Note placement animation — a gentle settle, not a bounce. */
+@keyframes note-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) rotate(var(--note-rotate, 0deg)) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--note-rotate, 0deg)) scale(1);
+  }
+}
+
+.animate-note-in {
+  animation: note-in 420ms var(--ease-note) both;
+}
+
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-sheet-in {
+  animation: sheet-in 260ms var(--ease-note) both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 200ms ease-out both;
+}
