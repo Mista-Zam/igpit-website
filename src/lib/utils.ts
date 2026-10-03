@@ -1,4 +1,4 @@
-﻿import type {
+import type {
   DashboardStats,
   ModerationAction,
   ModerationLog,
@@ -247,6 +247,11 @@ export const adminService = {
       p_decision: decision,
       p_reason: reason?.trim() || null,
     })
+    if (error) throw error
+  },
+
+  async promoteByEmail(email: string): Promise<void> {
+    const { error } = await supabase.rpc('admin_promote_user_by_email', { p_email: email.trim() })
     if (error) throw error
   },
 
