@@ -143,15 +143,10 @@ export const postsService = {
   },
 
   async searchPublic(q: string): Promise<PublicPost[]> {
-    const term = q.trim()
-    if (!term) return this.listPublic()
-    const { data, error } = await supabase
-      .from('posts_public')
-      .select('*')
-      .or(`recipient.ilike.%${term}%,content.ilike.%${term}%,category.ilike.%${term}%`)
-      .order('created_at', { ascending: false })
-    if (error) throw error
-    return (data as PublicPost[]) ?? []
+    const term = q.trim().toLocaleLowerCase()
+    const posts = await this.listPublic()
+    if (!term) return posts
+    return posts.filter((post) => [post.recipient, post.content, post.category].some((value) => value.toLocaleLowerCase().includes(term)))
   },
 }
 
@@ -234,6 +229,11 @@ export const adminService = {
     )
 
     return reports.map((r) => ({ ...r, post: byId.get(r.post_id) ?? null }))
+  },
+
+  async deletePost(postId: string): Promise<void> {
+    const { error } = await supabase.rpc('admin_delete_post', { p_post_id: postId })
+    if (error) throw error
   },
 
   /** Dismiss a report, keep the note, or remove the note and close the report. */

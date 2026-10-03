@@ -44,14 +44,14 @@ const NoteCard = ({
   onApprove,
   onReject,
   onRemove,
-  onRestore,
+  onRestore,`n  onDelete,
 }: {
   post: Post
   busy: boolean
   onApprove: (p: Post) => void
   onReject: (p: Post, reason: RejectionReason) => void
   onRemove: (p: Post) => void
-  onRestore: (p: Post) => void
+  onRestore: (p: Post) => void`n  onDelete: (p: Post) => void
 }) => {
   const [reason, setReason] = useState<RejectionReason>('Inappropriate content')
 
@@ -132,7 +132,7 @@ const NoteCard = ({
           </button>
         )}
 
-        {post.status === 'removed' && (
+        <button type="button" disabled={busy} onClick={() => onDelete(post)} className="rounded-full bg-rose-950 px-3 py-1 text-xs font-bold text-white transition hover:bg-black disabled:opacity-50">Delete</button>`n`n        {post.status === 'removed' && (
           <button
             type="button"
             disabled={busy}
@@ -221,6 +221,12 @@ const Admin = () => {
   const onRestore = (p: Post) =>
     run(p.id, 'Note restored.', () => adminService.moderate(p.id, 'restore'))
 
+  const onDelete = (p: Post) => {
+    if (window.confirm('Permanently delete this note? This cannot be undone.')) {
+      return run(p.id, 'Note permanently deleted.', () => adminService.deletePost(p.id))
+    }
+  }
+
   const onResolveReport = (r: ReportWithPost, decision: 'dismiss' | 'keep_published' | 'remove_post') =>
     run(r.id, 'Report resolved.', () => adminService.resolveReport(r.id, decision))
 
@@ -301,7 +307,7 @@ const Admin = () => {
               onApprove={onApprove}
               onReject={onReject}
               onRemove={onRemove}
-              onRestore={onRestore}
+              onRestore={onRestore}`n              onDelete={onDelete}
             />
           ))}
         </div>
