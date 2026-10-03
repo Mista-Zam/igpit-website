@@ -95,17 +95,6 @@ const LeaveNote = () => {
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2">
-          <div className="hidden">
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value as PostCategory)}
-              className="w-full rounded-2xl border border-beige-deep/70 bg-white px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-brand"
-            >
-              {POST_CATEGORIES.map((c) => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </select>
-          </div>
           <div className="space-y-2">
             <label className="text-sm font-semibold text-ink">Note Color</label>
             <div className="flex flex-wrap gap-2">
