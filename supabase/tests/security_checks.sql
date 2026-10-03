@@ -259,7 +259,7 @@ $$;
 
 
 -- ---------------------------------------------------------------------------
--- B. Guests (anon) â€” can pin a note, can do nothing else
+-- B. Guests (anon)  -  can pin a note, can do nothing else
 -- ---------------------------------------------------------------------------
 
 select pg_temp.expect_ok('B1 guest can pin a note without an account', 'anon', null,
