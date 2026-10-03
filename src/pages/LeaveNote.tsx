@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { postsService } from '../lib/utils'
@@ -16,6 +16,7 @@ const LeaveNote = () => {
   const [isAnonymous, setIsAnonymous] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [submitted, setSubmitted] = useState(false)
 
   const handlePreset = (p: string) => setRecipient(p)
 
