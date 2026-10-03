@@ -1,4 +1,4 @@
-﻿import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import {
   adminService,
@@ -33,7 +33,7 @@ const TABS: { key: Tab; label: string }[] = [
 
 const StatCard = ({ label, value }: { label: string; value: number | undefined }) => (
   <div className="rounded-2xl bg-white/95 px-4 py-3 shadow-note ring-1 ring-black/5">
-    <div className="text-2xl font-bold text-ink">{value ?? 'â€“'}</div>
+    <div className="text-2xl font-bold text-ink">{value ?? 'Ã¢â‚¬â€œ'}</div>
     <div className="text-xs font-semibold uppercase tracking-wide text-ink-soft">{label}</div>
   </div>
 )
@@ -44,14 +44,14 @@ const NoteCard = ({
   onApprove,
   onReject,
   onRemove,
-  onRestore,`n  onDelete,
+  onRestore,
 }: {
   post: Post
   busy: boolean
   onApprove: (p: Post) => void
   onReject: (p: Post, reason: RejectionReason) => void
   onRemove: (p: Post) => void
-  onRestore: (p: Post) => void`n  onDelete: (p: Post) => void
+  onRestore: (p: Post) => void
 }) => {
   const [reason, setReason] = useState<RejectionReason>('Inappropriate content')
 
@@ -77,7 +77,7 @@ const NoteCard = ({
 
       <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-ink-faint">
         <span>{post.is_anonymous ? 'Anonymous' : 'Named'}</span>
-        <span>Â·</span>
+        <span>Ã‚Â·</span>
         <span>{formatRelative(post.created_at)}</span>
       </div>
 
@@ -132,7 +132,7 @@ const NoteCard = ({
           </button>
         )}
 
-        <button type="button" disabled={busy} onClick={() => onDelete(post)} className="rounded-full bg-rose-950 px-3 py-1 text-xs font-bold text-white transition hover:bg-black disabled:opacity-50">Delete</button>`n`n        {post.status === 'removed' && (
+        {post.status === 'removed' && (
           <button
             type="button"
             disabled={busy}
@@ -221,12 +221,6 @@ const Admin = () => {
   const onRestore = (p: Post) =>
     run(p.id, 'Note restored.', () => adminService.moderate(p.id, 'restore'))
 
-  const onDelete = (p: Post) => {
-    if (window.confirm('Permanently delete this note? This cannot be undone.')) {
-      return run(p.id, 'Note permanently deleted.', () => adminService.deletePost(p.id))
-    }
-  }
-
   const onResolveReport = (r: ReportWithPost, decision: 'dismiss' | 'keep_published' | 'remove_post') =>
     run(r.id, 'Report resolved.', () => adminService.resolveReport(r.id, decision))
 
@@ -238,7 +232,7 @@ const Admin = () => {
         <div>
           <h1 className="font-display text-3xl font-bold sm:text-4xl">Admin Dashboard</h1>
           <p className="text-ink-soft">
-            Signed in as {profile?.display_name ?? 'admin'} Â· {profile?.role}
+            Signed in as {profile?.display_name ?? 'admin'} Ã‚Â· {profile?.role}
           </p>
         </div>
         <button
@@ -291,7 +285,7 @@ const Admin = () => {
       )}
 
       {loading && (
-        <div className="py-10 text-center text-sm font-semibold text-ink-soft">Loadingâ€¦</div>
+        <div className="py-10 text-center text-sm font-semibold text-ink-soft">LoadingÃ¢â‚¬Â¦</div>
       )}
 
       {!loading && showPosts && (
@@ -307,7 +301,7 @@ const Admin = () => {
               onApprove={onApprove}
               onReject={onReject}
               onRemove={onRemove}
-              onRestore={onRestore}`n              onDelete={onDelete}
+              onRestore={onRestore}
             />
           ))}
         </div>
@@ -332,12 +326,12 @@ const Admin = () => {
                 </span>
               </div>
 
-              {r.details && <p className="text-sm text-ink-soft">â€œ{r.details}â€</p>}
+              {r.details && <p className="text-sm text-ink-soft">Ã¢â‚¬Å“{r.details}Ã¢â‚¬Â</p>}
 
               {r.post ? (
                 <div className="rounded-xl bg-cream p-3 text-sm text-ink">
                   <div className="text-xs font-semibold uppercase text-ink-soft">
-                    To {r.post.recipient} Â· {r.post.status}
+                    To {r.post.recipient} Ã‚Â· {r.post.status}
                   </div>
                   <p className="mt-1">{r.post.content}</p>
                 </div>
@@ -408,7 +402,7 @@ const Admin = () => {
                   <td className="px-4 py-3 font-semibold">{l.moderator_display_name}</td>
                   <td className="px-4 py-3">{l.action}</td>
                   <td className="px-4 py-3">{l.post_recipient}</td>
-                  <td className="px-4 py-3 text-ink-soft">{l.reason ?? 'â€“'}</td>
+                  <td className="px-4 py-3 text-ink-soft">{l.reason ?? 'Ã¢â‚¬â€œ'}</td>
                 </tr>
               ))}
             </tbody>
